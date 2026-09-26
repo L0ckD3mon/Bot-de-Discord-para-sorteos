@@ -27,7 +27,7 @@ async def recibir_mensajes(bot,tiempo: int):
         while contador:
             msj = await bot.wait_for("message",timeout=contador) # Recibe los mensajes durante el tiempo establecido
             nombre = msj.author.mention # Es el @ del usuario
-            if not participantes:
+            if nombre not in participantes:
                 participantes.append(nombre)   
     except TimeoutError: # Para cuando se acaba el tiempo
         return participantes
@@ -36,4 +36,3 @@ async def recibir_mensajes(bot,tiempo: int):
 async def obtener_ganador(participantes: list[str]):
     ganador = choice(participantes) # Choice elije un participante aleatorio
     return ganador
-
